@@ -48,7 +48,7 @@ window.CONFIG = {
   ],
 
   // Repo GitHub để báo khi có bản mới (Cài đặt → Thông tin). Bản fork thì đổi thành repo của bạn.
-  repo: 'meocong/prj-tv-samsung',
+  repo: 'ntd2885/prj-tv-samsung',
 
   // Sinh nhật người nhà: { name: 'Bà', day: 10, month: 11, lunar: false } — lunar: true nếu tính theo âm lịch.
   birthdays: [],
