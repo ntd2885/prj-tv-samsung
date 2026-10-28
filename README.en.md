@@ -48,8 +48,9 @@ may start a service when the TV boots, which is what brings the home screen up a
 - **Starts with the TV, comes back after every app**: the background service starts when the TV boots and brings the
   home screen up, keeps it in front for the first seconds after the TV wakes (Smart Hub or the TV's last app may come up
   late), and returns to it when an app you opened closes, usually within a second.
-- **Apps**: the apps installed on the TV, found automatically. A dock of four (VTV GO, YouTube, Netflix and VieON by
-  default; keys 1–4 open them), a grid of the other apps and four games. Hold OK on a tile to move it; hide apps in
+- **Apps**: the apps installed on the TV, found automatically. A dock of five (VTV GO, YouTube, Netflix, VieON and FPT Play by
+  default; keys 1–5 open them), a grid of the other apps and four games. The dock and the grid sort themselves by how often you
+  open each app (off in *Settings → Home screen → Sort apps by use*). Hold OK on a tile to move it; hide apps in
   *Settings → Apps*.
 - **YouTube row**: rest on the YouTube tile and the newest videos of a set of channels slide up above the dock. ▲ to pick,
   OK plays the video straight away, ▼ folds the row away. No API key.

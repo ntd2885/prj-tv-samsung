@@ -19,7 +19,8 @@ window.CONFIG = {
     { match: ['vtvgo'], id: 'OxWOiJOOyr.vtv' },      // VTVgo Truyền hình số Quốc gia (bản mới); đứng đầu nên không
     { match: ['youtube'], id: '9Ur5IzDKqV.TizenYouTube' },   // có hàng video che Hôm nay và thời tiết lúc mở TV
     { match: ['netflix'] },
-    { match: ['vieon'] }
+    { match: ['vieon'] },
+    { match: ['fpt'] }
   ],
 
   // Không bao giờ hiện thành ô (khớp đầu tên, không dấu). Ẩn/hiện từng app cũng làm được trong Cài đặt → Ứng dụng.
@@ -59,7 +60,8 @@ window.CONFIG = {
     photoSource: 'bing',       // 'bing' | 'mix' (Bing + Wikimedia)
     photoInterval: 30,         // giây giữa hai ảnh
     nightDim: true,            // màn hình chờ tối hơn từ 23:00 đến 6:00
-    columns: 4,                // số ô mỗi hàng: 4 | 5 | 6
+    autoSort: true,            // dock và lưới xếp theo số lần mở app từ màn hình chính (TV tự đếm); false = dock theo `dock` ở trên
+    columns: 5,               // số ô mỗi hàng: 4 | 5 | 6
     showToday: true,           // khối "Hôm nay": ngày này năm xưa, câu nói hay, tin mới
     showMarkets: true,         // giá vàng (PNJ) và tỷ giá USD (Vietcombank) trong khối "Hôm nay"
     showWords: true,           // Học tiếng Anh: ô riêng, một từ mỗi ngày trong "Hôm nay" và trên màn hình chờ

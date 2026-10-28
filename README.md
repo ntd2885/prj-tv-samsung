@@ -45,8 +45,8 @@ Từng bước chi tiết, cách xem IP trên từng máy, cách xử lý lỗi:
 **Màn hình chính**
 - **Bật TV là vào đây**, kể cả sau khi rút điện hay mất điện (dịch vụ nền chạy cùng TV), và **thoát app nào cũng về
   đây**, thường dưới 1 giây.
-- **Ứng dụng**: tự nhận các app đã cài. Dock 4 app (mặc định VTV GO, YouTube, Netflix, VieON; phím 1–4 mở thẳng), lưới
-  các app còn lại, 4 game có sẵn. Giữ OK trên một ô để di chuyển; ẩn hoặc hiện app ở *Cài đặt → Ứng dụng*.
+- **Ứng dụng**: tự nhận các app đã cài. Dock 5 app (mặc định VTV GO, YouTube, Netflix, VieON, FPT Play; phím 1–5 mở thẳng), lưới
+  các app còn lại, 4 game có sẵn. Dock và lưới tự xếp theo số lần bạn mở app (tắt ở *Cài đặt → Màn hình chính → Xếp app theo lượt mở*). Giữ OK trên một ô để di chuyển; ẩn hoặc hiện app ở *Cài đặt → Ứng dụng*.
 - **Hàng YouTube**: dừng ở ô YouTube thì video mới của các kênh chọn sẵn hiện trên dock; ▲ để chọn, OK để phát thẳng
   video, ▼ để gập lại. Không cần API key.
 - **Nguồn vào** (HDMI, truyền hình, đặt tên riêng cho cổng) và lối tắt vào cài đặt của TV.

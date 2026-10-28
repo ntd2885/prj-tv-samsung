@@ -138,6 +138,14 @@
     });
     var rest = apps.filter(function (a) { return !used[a.id]; });
     rest.sort(function (a, b) { return (b.uses || 0) - (a.uses || 0) || a.title.localeCompare(b.title); });
+    // Apps opened from here most often come first: the dock keeps config.js's apps until the TV has seen better ones.
+    if (settings.autoSort) {
+      var uses = S.get(USES_KEY, {}), ranked = Platform.rankByUse(dock.concat(rest), uses);
+      var opened = ranked.filter(function (a) { return uses[a.id] > 0; }).length;
+      var slots = Math.min(COLUMNS, ranked.length, Math.max(dock.length, opened));   // the dock never grows past config.js's apps on a TV that has no counts yet
+      dock = ranked.slice(0, slots);
+      rest = ranked.slice(slots);
+    }
 
     var restItems = rest.map(appItem);
     var gameItems = Games.list().map(function (g) { return { kind: 'game', game: g, color: g.color }; });
@@ -150,6 +158,7 @@
     // An order arranged on the TV wins, until the dock in config.js changes.
     var saved = loadOrder();
     if (!saved) return all;
+    var dockItems = settings.autoSort ? all.slice(0, dock.length) : [];   // the dock follows use even over an arranged order
     var byId = {};
     all.forEach(function (it) { byId[itemId(it)] = it; });
     var placed = [];
@@ -160,12 +169,13 @@
       var prev = i > 0 ? placed.indexOf(all[i - 1]) : -1;
       if (it.kind === 'words' && prev !== -1) placed.splice(prev + 1, 0, it); else placed.push(it);
     });
+    if (dockItems.length) placed = dockItems.concat(placed.filter(function (it) { return dockItems.indexOf(it) === -1; }));
     return placed;
   }
 
   function appItem(a) { return { kind: 'app', app: a, color: null }; }
 
-  var ORDER_KEY = 'order';
+  var ORDER_KEY = 'order', USES_KEY = 'appUses';   // appUses: {app id: times opened from here}
   function dockKey() { return JSON.stringify(C.dock || []) + COLUMNS; }
 
   function loadOrder() {
@@ -440,6 +450,9 @@
       location.href = 'games/' + item.game.id + '/index.html';
       return;
     }
+    var uses = S.get(USES_KEY, {});
+    uses[item.app.id] = (uses[item.app.id] || 0) + 1;
+    S.set(USES_KEY, uses);
     Platform.launch(item.app.id, function () { toast(T('Không mở được {0}', item.app.title)); },
       settings.returnHome ? [item.app.storeId, item.app.id] : null);
   }
@@ -897,6 +910,7 @@
         onOff('returnHome', T('Thoát app thì về đây')),
         choice('closeHidden', T('Đóng app chạy ngầm'), [[5, T('Sau 5 phút')], [15, T('Sau 15 phút')], [0, T('Không')]],
           function () { Platform.setServiceOption('closeAfter', settings.closeHidden); }),
+        onOff('autoSort', T('Xếp app theo lượt mở'), function () { loadApps(); }),
         choice('columns', T('Số ô mỗi hàng'), [[4, T('4 (lớn)')], [5, '5'], [6, T('6 (nhiều app)')]], function () { setGeometry(); loadApps(); }),
         choice('clock24', T('Đồng hồ'), [[true, T('24 giờ')], [false, T('12 giờ')]], updateClockNow),
         choice('wallpaper', T('Hình nền'), [['photo', T('Ảnh đẹp mỗi ngày')], ['mix', T('Ảnh đẹp + ảnh gia đình')], ['family', T('Ảnh gia đình')],

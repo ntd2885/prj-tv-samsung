@@ -119,6 +119,17 @@
     return out;
   }
 
+  /**
+   * Pure (tests/apps.test.js): apps most opened first. counts maps an app id to how many times it was opened from
+   * the home screen; apps with the same count (and every app on a new TV) keep the order they came in.
+   */
+  function rankByUse(apps, counts) {
+    counts = counts || {};
+    return apps.map(function (a, i) { return { a: a, i: i, n: counts[a.id] || 0 }; })
+      .sort(function (x, y) { return y.n - x.n || x.i - y.i; })
+      .map(function (e) { return e.a; });
+  }
+
   function iconUrl(path) {
     if (!path) return '';
     if (/^(file|https?):/.test(path)) return path;
@@ -359,6 +370,7 @@
     ownAppId: ownAppId,
     listApps: listApps,
     mergeApps: mergeApps,
+    rankByUse: rankByUse,
     launch: launch,
     startService: function () { if (isTV) tellService(null); },
     exit: exit,

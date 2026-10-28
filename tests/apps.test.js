@@ -35,3 +35,11 @@ test('the shipped catalog has what every entry needs (apps without artwork get a
   assert.ok(window.TV_APPS.length > 10);
   window.TV_APPS.forEach((a) => { assert.ok(a.id && a.title, JSON.stringify(a)); });
 });
+
+test('rankByUse puts the most opened apps first and keeps the incoming order for ties', () => {
+  const apps = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }];
+  assert.deepEqual(Platform.rankByUse(apps, {}).map((x) => x.id), ['a', 'b', 'c', 'd']);
+  assert.deepEqual(Platform.rankByUse(apps, undefined).map((x) => x.id), ['a', 'b', 'c', 'd']);
+  assert.deepEqual(Platform.rankByUse(apps, { c: 5, d: 5, b: 1 }).map((x) => x.id), ['c', 'd', 'b', 'a']);
+  assert.deepEqual(apps.map((x) => x.id), ['a', 'b', 'c', 'd'], 'the input is not reordered in place');
+});

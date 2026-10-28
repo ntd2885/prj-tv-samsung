@@ -138,6 +138,7 @@ window.I18N_EN = {
   'Ngày này năm xưa, câu nói, tin mới': 'On this day, sayings, news',
   'Giá vàng, tỷ giá': 'Gold price, exchange rate',
   'CPU và bộ nhớ dưới đồng hồ': 'CPU and storage under the clock',
+  'Xếp app theo lượt mở': 'Sort apps by use',
   'Sắp xếp ứng dụng như ban đầu': 'Reset the app order',
   'Đã sắp xếp lại': 'App order reset',
   'Ứng dụng': 'Apps',
